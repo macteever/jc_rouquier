@@ -39,6 +39,7 @@ services:
     volumes:
       - ps_data:/var/www/html
       - ./modules/b2block:/var/www/html/modules/b2block
+      - ./themes/jc_rouquier:/var/www/html/themes/jc_rouquier
 
   mailpit:
     image: axllent/mailpit:latest

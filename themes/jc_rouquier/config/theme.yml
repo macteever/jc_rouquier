@@ -1,0 +1,37 @@
+name: jc_rouquier
+display_name: JC Rouquier
+version: 1.0.0
+author:
+  name: Nicolas Metivier
+
+meta:
+  compatibility:
+    from: 8.0
+    to: ~
+  available_layouts:
+    layout-full-width:
+      name: Full width layout
+      description: Ideal for product pages to maximize picture size
+    # layout-left-side-column:
+    #   name: One small left column
+    #   description: Great for CMS pages to show advertisements on the side
+
+parent: classic
+
+assets:
+  use_parent_assets: true
+
+  css:
+    all:
+      - id: google-font-inter
+        path: https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap
+        priority: 50
+      - id: jc-rouquier-theme
+        path: assets/css/theme.css
+        priority: 200
+
+  js:
+    all:
+      - id: jc-rouquier-theme
+        path: assets/js/theme.js
+        priority: 200

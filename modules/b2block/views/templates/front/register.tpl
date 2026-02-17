@@ -1,9 +1,9 @@
-{extends file='layouts/layout-full-width.tpl'}
+{extends file='layouts/layout-portal.tpl'}
 
-{block name='header'}{/block}
-{block name='footer'}{/block}
+{* {block name='header'}{/block}
+{block name='footer'}{/block} *}
 
-{block name='content'}
+{block name='page_content'}
   <main class="b2block-portal">
     <section class="b2block-portal__left">
       <section class="b2block-register" aria-labelledby="b2block-register-title">
