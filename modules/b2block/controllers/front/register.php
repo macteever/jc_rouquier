@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 class B2blockRegisterModuleFrontController extends ModuleFrontController
 {
+
     public function initContent(): void
     {
         parent::initContent();
