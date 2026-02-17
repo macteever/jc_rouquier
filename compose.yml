@@ -3,10 +3,10 @@ services:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_DATABASE: ps_jcrouquier
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: lgp4GfcrnbTXYx@a
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       - db_data:/var/lib/mysql
     healthcheck:
@@ -23,19 +23,19 @@ services:
     ports:
       - "8080:80"
     environment:
-      DB_SERVER: db
-      DB_NAME: ps_jcrouquier
-      DB_USER: admin
-      DB_PASSWD: lgp4GfcrnbTXYx@a
+      DB_SERVER: ${DB_SERVER}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWD: ${DB_PASSWD}
 
-      PS_INSTALL_AUTO: 1
-      PS_DEV_MODE: 1
-      PS_DOMAIN: localhost:8080
+      PS_INSTALL_AUTO: ${PS_INSTALL_AUTO}
+      PS_DEV_MODE: ${PS_DEV_MODE}
+      PS_DOMAIN: ${PS_DOMAIN}
 
-      ADMIN_MAIL: contact@nicolasmetivier.fr
-      ADMIN_PASSWD: root2026!
-      PS_LANGUAGE: fr
-      PS_COUNTRY: FR
+      ADMIN_MAIL: ${ADMIN_MAIL}
+      ADMIN_PASSWD: ${ADMIN_PASSWD}
+      PS_LANGUAGE: ${PS_LANGUAGE}
+      PS_COUNTRY: ${PS_COUNTRY}
     volumes:
       - ps_data:/var/www/html
       - ./modules/b2block:/var/www/html/modules/b2block
@@ -43,8 +43,8 @@ services:
   mailpit:
     image: axllent/mailpit:latest
     ports:
-      - "8025:8025"   # Web UI
-      - "1025:1025"   # SMTP
+      - "${MAILPIT_UI_PORT}:8025"   # Web UI
+      - "${MAILPIT_SMTP_PORT}:1025" # SMTP
 
 volumes:
   db_data:

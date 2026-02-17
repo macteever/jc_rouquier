@@ -45,3 +45,6 @@ composer.lock
 
 # Logs
 *.log
+
+# Environment secrets
+.env
