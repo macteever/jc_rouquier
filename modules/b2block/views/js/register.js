@@ -25,6 +25,7 @@
     currentStepInput.value = String(initialStepFromServer > 0 ? initialStepFromServer : 1);
     form.appendChild(currentStepInput);
   }
+
   var initialStep = initialStepFromServer > 0
     ? initialStepFromServer
     : (currentStepInput ? Number(currentStepInput.value || '1') : 1);
@@ -32,6 +33,181 @@
 
   if (currentStep < 1 || currentStep > 5) {
     currentStep = 1;
+  }
+
+  function getErrorContainer() {
+    var existing = document.querySelector('.b2block-register__errors');
+    if (existing) {
+      return existing;
+    }
+
+    var container = document.createElement('div');
+    container.className = 'b2block-register__errors';
+    container.setAttribute('role', 'alert');
+    form.insertBefore(container, form.firstChild);
+
+    return container;
+  }
+
+  function clearErrors() {
+    var container = getErrorContainer();
+    container.innerHTML = '';
+    container.style.display = 'none';
+
+    var invalidFields = form.querySelectorAll('.is-invalid');
+    Array.prototype.forEach.call(invalidFields, function (field) {
+      field.classList.remove('is-invalid');
+    });
+  }
+
+  function showErrors(errors) {
+    var container = getErrorContainer();
+
+    if (!errors.length) {
+      container.innerHTML = '';
+      container.style.display = 'none';
+      return;
+    }
+
+    var html = '<ul>';
+    errors.forEach(function (message) {
+      html += '<li>' + message + '</li>';
+    });
+    html += '</ul>';
+
+    container.innerHTML = html;
+    container.style.display = '';
+  }
+
+  function fieldValue(name) {
+    var field = form.querySelector('[name="' + name + '"]');
+    if (!field) {
+      return '';
+    }
+
+    if (field.type === 'checkbox') {
+      return field.checked ? '1' : '';
+    }
+
+    return (field.value || '').trim();
+  }
+
+  function markInvalid(field, errors, message) {
+    errors.push(message);
+
+    if (field) {
+      field.classList.add('is-invalid');
+    }
+  }
+
+  function validateCurrentStep() {
+    clearErrors();
+
+    var currentStepEl = form.querySelector('[data-step="' + currentStep + '"]');
+    if (!currentStepEl) {
+      return true;
+    }
+
+    var errors = [];
+    var firstInvalidField = null;
+
+    function invalidate(name, message) {
+      var field = currentStepEl.querySelector('[name="' + name + '"]');
+      markInvalid(field, errors, message);
+      if (!firstInvalidField && field) {
+        firstInvalidField = field;
+      }
+    }
+
+    function required(name, message) {
+      if (!fieldValue(name)) {
+        invalidate(name, message);
+        return false;
+      }
+
+      return true;
+    }
+
+    if (currentStep === 1) {
+      required('firstname', 'Le prenom est obligatoire.');
+      required('lastname', 'Le nom est obligatoire.');
+
+      var emailField = currentStepEl.querySelector('[name="email"]');
+      var emailValue = fieldValue('email');
+      if (!emailValue) {
+        invalidate('email', 'Adresse email invalide.');
+      } else if (!emailField || !emailField.checkValidity()) {
+        invalidate('email', 'Adresse email invalide.');
+      }
+
+      var phoneValue = fieldValue('phone');
+      if (!phoneValue) {
+        invalidate('phone', 'Le telephone est obligatoire.');
+      } else if (phoneValue.replace(/\D+/g, '').length !== 10) {
+        invalidate('phone', 'Le téléphone doit contenir 10 chiffres.');
+      }
+    }
+
+    if (currentStep === 2) {
+      required('company_name', 'Le nom de societe est obligatoire.');
+      required('company_legal', 'La raison sociale est obligatoire.');
+
+      var siretValue = fieldValue('siret');
+      if (!siretValue) {
+        invalidate('siret', 'Le SIRET est obligatoire.');
+      } else if (siretValue.replace(/\D+/g, '').length !== 14) {
+        invalidate('siret', 'Le SIRET doit contenir 14 chiffres.');
+      }
+    }
+
+    if (currentStep === 3) {
+      required('address1', 'L adresse est obligatoire.');
+
+      var postcodeValue = fieldValue('postcode');
+      if (!postcodeValue) {
+        invalidate('postcode', 'Le code postal est obligatoire.');
+      } else if (postcodeValue.replace(/\D+/g, '').length !== 5) {
+        invalidate('postcode', 'Le code postal doit contenir 5 chiffres.');
+      }
+
+      required('city', 'La ville est obligatoire.');
+
+      if (!fieldValue('country')) {
+        invalidate('country', 'Le pays selectionne est invalide.');
+      }
+    }
+
+    if (currentStep === 4) {
+      var passwordValue = fieldValue('password');
+      var passwordConfirmValue = fieldValue('password_confirm');
+
+      if (!passwordValue || passwordValue.length < 8) {
+        invalidate('password', 'Le mot de passe doit contenir au moins 8 caracteres.');
+      }
+
+      if (!passwordConfirmValue) {
+        invalidate('password_confirm', 'La confirmation du mot de passe est obligatoire.');
+      } else if (passwordValue && passwordValue !== passwordConfirmValue) {
+        invalidate('password_confirm', 'Les mots de passe ne correspondent pas.');
+      }
+    }
+
+    if (currentStep === 5) {
+      if (!fieldValue('certify_cgv')) {
+        invalidate('certify_cgv', 'Vous devez certifier l acceptation des CGV.');
+      }
+    }
+
+    if (errors.length) {
+      showErrors(errors);
+      if (firstInvalidField && typeof firstInvalidField.focus === 'function') {
+        firstInvalidField.focus();
+      }
+      return false;
+    }
+
+    showErrors([]);
+    return true;
   }
 
   function setStep(stepNumber) {
@@ -56,48 +232,12 @@
           field.removeAttribute('disabled');
         } else {
           field.setAttribute('disabled', 'disabled');
+          field.classList.remove('is-invalid');
         }
       });
     });
-  }
 
-  function validateCurrentStep() {
-    var currentStepEl = form.querySelector('[data-step="' + currentStep + '"]');
-    if (!currentStepEl) {
-      return true;
-    }
-
-    var fields = currentStepEl.querySelectorAll('input, select, textarea');
-    for (var i = 0; i < fields.length; i += 1) {
-      var field = fields[i];
-      if (field.type === 'hidden' || field.disabled) {
-        continue;
-      }
-
-      field.setCustomValidity('');
-
-      if (!field.checkValidity()) {
-        field.reportValidity();
-        return false;
-      }
-    }
-
-    if (currentStep === 4) {
-      var password = form.querySelector('#reg-password');
-      var confirm = form.querySelector('#reg-password-confirm');
-
-      if (password && confirm && password.value !== confirm.value) {
-        confirm.setCustomValidity('Les mots de passe ne correspondent pas.');
-        confirm.reportValidity();
-        return false;
-      }
-
-      if (confirm) {
-        confirm.setCustomValidity('');
-      }
-    }
-
-    return true;
+    showErrors([]);
   }
 
   function buildPayload() {

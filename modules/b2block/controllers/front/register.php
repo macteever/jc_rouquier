@@ -158,7 +158,7 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
         return $step;
     }
 
-    private function validateSubmittedData(array $data, array $countries, array &$errors): void
+    private function validateSubmittedData(array &$data, array $countries, array &$errors): void
     {
         if (empty($data['firstname'])) {
             $errors[] = 'Le prenom est obligatoire.';
@@ -168,14 +168,20 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
             $errors[] = 'Le nom est obligatoire.';
         }
 
-        if (empty($data['email']) || !Validate::isEmail((string) $data['email'])) {
+        $email = (string) ($data['email'] ?? '');
+        if ($email === '' || !Validate::isEmail($email)) {
             $errors[] = 'Adresse email invalide.';
-        } elseif ((int) Customer::customerExists((string) $data['email'], true, false) > 0) {
-            $errors[] = 'Un compte existe deja avec cet email.';
+        } elseif ($this->emailExists($email)) {
+            $errors[] = 'Cet email est déjà utilisé.';
         }
 
         if (empty($data['phone'])) {
             $errors[] = 'Le telephone est obligatoire.';
+        } else {
+            $data['phone'] = $this->normalizeDigits((string) $data['phone']);
+            if (strlen((string) $data['phone']) !== 10) {
+                $errors[] = 'Le téléphone doit contenir 10 chiffres.';
+            }
         }
 
         if (empty($data['company_name'])) {
@@ -188,6 +194,13 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
 
         if (empty($data['siret'])) {
             $errors[] = 'Le SIRET est obligatoire.';
+        } else {
+            $data['siret'] = $this->normalizeDigits((string) $data['siret']);
+            if (strlen((string) $data['siret']) !== 14) {
+                $errors[] = 'Le SIRET doit contenir 14 chiffres.';
+            } elseif ($this->siretExists((string) $data['siret'])) {
+                $errors[] = 'Ce SIRET est déjà enregistré.';
+            }
         }
 
         if (empty($data['address1'])) {
@@ -196,6 +209,11 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
 
         if (empty($data['postcode'])) {
             $errors[] = 'Le code postal est obligatoire.';
+        } else {
+            $data['postcode'] = $this->normalizeDigits((string) $data['postcode']);
+            if (strlen((string) $data['postcode']) !== 5) {
+                $errors[] = 'Le code postal doit contenir 5 chiffres.';
+            }
         }
 
         if (empty($data['city'])) {
@@ -394,5 +412,44 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
             '{shop_name}' => (string) Configuration::get('PS_SHOP_NAME'),
             '{shop_url}' => (string) $this->context->link->getPageLink('index', true),
         ];
+    }
+
+    private function normalizeDigits(string $value): string
+    {
+        return (string) preg_replace('/\D+/', '', $value);
+    }
+
+    private function emailExists(string $email): bool
+    {
+        if (method_exists('Customer', 'customerExists')) {
+            return (bool) Customer::customerExists($email);
+        }
+
+        return (bool) Db::getInstance()->getValue(
+            'SELECT c.id_customer
+            FROM `' . _DB_PREFIX_ . 'customer` c
+            WHERE c.email = "' . pSQL($email) . '"
+            LIMIT 1'
+        );
+    }
+
+    private function siretExists(string $siret): bool
+    {
+        if ((bool) Db::getInstance()->getValue(
+            'SELECT a.id_address
+            FROM `' . _DB_PREFIX_ . 'address` a
+            WHERE a.dni = "' . pSQL($siret) . '"
+              AND a.deleted = 0
+            LIMIT 1'
+        )) {
+            return true;
+        }
+
+        return (bool) Db::getInstance()->getValue(
+            'SELECT c.id_customer
+            FROM `' . _DB_PREFIX_ . 'customer` c
+            WHERE c.note LIKE "%' . pSQL($siret) . '%"
+            LIMIT 1'
+        );
     }
 }
