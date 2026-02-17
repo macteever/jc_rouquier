@@ -1,0 +1,6 @@
+Bonjour {firstname} {lastname},
+
+Votre compte professionnel est valide. Vous pouvez maintenant vous connecter.
+
+{shop_name}
+{shop_url}

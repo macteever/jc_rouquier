@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>b2block</name>
+    <displayName><![CDATA[B2B Lock (redirect guests)]]></displayName>
+    <version><![CDATA[1.0.1]]></version>
+    <description><![CDATA[Redirect non-logged visitors to landing page, except login/forgot password.]]></description>
+    <author><![CDATA[Local]]></author>
+    <tab><![CDATA[]]></tab>
+    <is_configurable>0</is_configurable>
+    <need_instance>0</need_instance>
+</module>

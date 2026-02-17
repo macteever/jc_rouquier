@@ -1,0 +1,51 @@
+services:
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: ps_jcrouquier
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: lgp4GfcrnbTXYx@a
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  prestashop:
+    image: prestashop/prestashop:9
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+    environment:
+      DB_SERVER: db
+      DB_NAME: ps_jcrouquier
+      DB_USER: admin
+      DB_PASSWD: lgp4GfcrnbTXYx@a
+
+      PS_INSTALL_AUTO: 1
+      PS_DEV_MODE: 1
+      PS_DOMAIN: localhost:8080
+
+      ADMIN_MAIL: contact@nicolasmetivier.fr
+      ADMIN_PASSWD: root2026!
+      PS_LANGUAGE: fr
+      PS_COUNTRY: FR
+    volumes:
+      - ps_data:/var/www/html
+      - ./modules/b2block:/var/www/html/modules/b2block
+
+  mailpit:
+    image: axllent/mailpit:latest
+    ports:
+      - "8025:8025"   # Web UI
+      - "1025:1025"   # SMTP
+
+volumes:
+  db_data:
+  ps_data:

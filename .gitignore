@@ -1,0 +1,47 @@
+# ======================
+# PrestaShop
+# ======================
+
+# Cache
+/var/cache/*
+!/var/cache/.gitkeep
+
+# Logs
+/var/logs/*
+!/var/logs/.gitkeep
+
+# Uploaded files
+/img/*
+!/img/index.php
+
+# Translations
+/translations/*
+
+# Config locale
+/app/config/parameters.php
+/config/settings.inc.php
+
+# Composer
+/vendor/
+composer.lock
+
+# Node (si tu en ajoutes)
+/node_modules/
+
+# ======================
+# Docker
+# ======================
+
+# Database volumes
+*.sql
+*.dump
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
