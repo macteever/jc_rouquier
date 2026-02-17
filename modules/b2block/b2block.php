@@ -11,7 +11,7 @@ class B2block extends Module
     public function __construct()
     {
         $this->name = 'b2block';
-        $this->version = '1.0.1';
+        $this->version = '1.0.2';
         $this->author = 'Local';
         $this->need_instance = 0;
 
@@ -70,6 +70,15 @@ class B2block extends Module
         }
 
         if ($currentController === 'register') {
+            $controller->registerStylesheet(
+                'b2block-register-css',
+                'modules/' . $this->name . '/views/css/register.css',
+                [
+                    'media' => 'all',
+                    'priority' => 150,
+                    'version' => $this->version,
+                ]
+            );
             $controller->registerJavascript(
                 'b2block-register-js',
                 'modules/' . $this->name . '/views/js/register.js',
@@ -98,19 +107,6 @@ class B2block extends Module
 
         $existingCustomer = new Customer($customerId);
         self::$customerActiveStateCache[$customerId] = (int) $existingCustomer->active;
-
-        PrestaShopLogger::addLog(
-            sprintf(
-                'B2block DEBUG BEFORE customer update: customer_id=%d db_active=%d',
-                $customerId,
-                (int) $existingCustomer->active
-            ),
-            1,
-            null,
-            'Customer',
-            $customerId,
-            true
-        );
     }
 
     public function hookActionObjectCustomerUpdateAfter($params)
@@ -129,20 +125,6 @@ class B2block extends Module
 
         $beforeActive = self::$customerActiveStateCache[$customerId] ?? null;
         unset(self::$customerActiveStateCache[$customerId]);
-
-        PrestaShopLogger::addLog(
-            sprintf(
-                'B2block DEBUG AFTER customer update: customer_id=%d final_active=%d before_active=%s',
-                $customerId,
-                (int) $customer->active,
-                $beforeActive === null ? 'null' : (string) $beforeActive
-            ),
-            1,
-            null,
-            'Customer',
-            $customerId,
-            true
-        );
 
         if ($beforeActive !== 0 || (int) $customer->active !== 1) {
             return;
@@ -212,7 +194,7 @@ class B2block extends Module
         if ($addressId <= 0) {
             PrestaShopLogger::addLog(
                 sprintf(
-                    'B2block DEBUG notifyCustomerApproved: no address found for customer_id=%d',
+                    'B2block: no address found for customer_id=%d',
                     $customerId
                 ),
                 2,
@@ -242,19 +224,6 @@ class B2block extends Module
                 $templateVars['{company_legal}'] = trim((string) $matches[1]);
             }
         }
-
-        PrestaShopLogger::addLog(
-            sprintf(
-                'B2block DEBUG notifyCustomerApproved: calling Mail::Send for customer_id=%d email=%s',
-                $customerId,
-                (string) $customer->email
-            ),
-            1,
-            null,
-            'Customer',
-            $customerId,
-            true
-        );
 
         $sent = Mail::Send(
             $idLang,
@@ -286,27 +255,9 @@ class B2block extends Module
 
     public function hookActionDispatcherBefore($params)
     {
-        $requestUri = (string) ($_SERVER['REQUEST_URI'] ?? '');
-        $requestMethod = (string) ($_SERVER['REQUEST_METHOD'] ?? '');
         $fc = (string) Tools::getValue('fc');
         $module = (string) Tools::getValue('module');
         $controller = (string) Tools::getValue('controller');
-
-        PrestaShopLogger::addLog(
-            sprintf(
-                'B2block dispatcher debug: REQUEST_URI=%s method=%s fc=%s module=%s controller=%s',
-                $requestUri,
-                $requestMethod,
-                $fc,
-                $module,
-                $controller
-            ),
-            1,
-            null,
-            'Module',
-            0,
-            true
-        );
 
         // 1) On ne bloque pas le back-office
         if ($this->context->employee) {
@@ -328,19 +279,6 @@ class B2block extends Module
         if ($fc === 'module' && $module === 'b2block') {
             return;
         }
-
-        if (strpos($requestUri, '/module/b2block/') !== false) {
-            return;
-        }
-
-        PrestaShopLogger::addLog(
-            'B2block redirect triggered',
-            1,
-            null,
-            'Module',
-            0,
-            true
-        );
 
         Tools::redirect($this->context->link->getModuleLink('b2block', 'access'));
     }

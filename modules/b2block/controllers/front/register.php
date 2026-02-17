@@ -425,31 +425,73 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
             return (bool) Customer::customerExists($email);
         }
 
-        return (bool) Db::getInstance()->getValue(
-            'SELECT c.id_customer
-            FROM `' . _DB_PREFIX_ . 'customer` c
-            WHERE c.email = "' . pSQL($email) . '"
-            LIMIT 1'
-        );
+        $query = new DbQuery();
+        $query->select('c.id_customer');
+        $query->from('customer', 'c');
+        $query->where('c.email = "' . pSQL($email) . '"');
+        $query->limit(1);
+
+        try {
+            return (bool) Db::getInstance()->getValue($query);
+        } catch (Exception $e) {
+            PrestaShopLogger::addLog(
+                'B2block SQL ERROR: ' . (string) $query . ' / ' . $e->getMessage(),
+                2,
+                null,
+                'Module',
+                0,
+                true
+            );
+
+            return false;
+        }
     }
 
     private function siretExists(string $siret): bool
     {
-        if ((bool) Db::getInstance()->getValue(
-            'SELECT a.id_address
-            FROM `' . _DB_PREFIX_ . 'address` a
-            WHERE a.dni = "' . pSQL($siret) . '"
-              AND a.deleted = 0
-            LIMIT 1'
-        )) {
-            return true;
+        $queryAddress = new DbQuery();
+        $queryAddress->select('a.id_address');
+        $queryAddress->from('address', 'a');
+        $queryAddress->where('a.dni = "' . pSQL($siret) . '"');
+        $queryAddress->where('a.deleted = 0');
+        $queryAddress->limit(1);
+
+        try {
+            if ((bool) Db::getInstance()->getValue($queryAddress)) {
+                return true;
+            }
+        } catch (Exception $e) {
+            PrestaShopLogger::addLog(
+                'B2block SQL ERROR: ' . (string) $queryAddress . ' / ' . $e->getMessage(),
+                2,
+                null,
+                'Module',
+                0,
+                true
+            );
+
+            return false;
         }
 
-        return (bool) Db::getInstance()->getValue(
-            'SELECT c.id_customer
-            FROM `' . _DB_PREFIX_ . 'customer` c
-            WHERE c.note LIKE "%' . pSQL($siret) . '%"
-            LIMIT 1'
-        );
+        $queryCustomer = new DbQuery();
+        $queryCustomer->select('c.id_customer');
+        $queryCustomer->from('customer', 'c');
+        $queryCustomer->where('c.note LIKE "%' . pSQL($siret, true) . '%"');
+        $queryCustomer->limit(1);
+
+        try {
+            return (bool) Db::getInstance()->getValue($queryCustomer);
+        } catch (Exception $e) {
+            PrestaShopLogger::addLog(
+                'B2block SQL ERROR: ' . (string) $queryCustomer . ' / ' . $e->getMessage(),
+                2,
+                null,
+                'Module',
+                0,
+                true
+            );
+
+            return false;
+        }
     }
 }
