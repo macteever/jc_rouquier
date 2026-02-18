@@ -1,7 +1,5 @@
 {extends file='layouts/layout-portal.tpl'}
-
-{* {block name='header'}{/block}
-{block name='footer'}{/block} *}
+{* {extends file='layouts/layout-full-width.tpl'} *}
 
 {block name='page_content'}
   <main class="b2block-portal">

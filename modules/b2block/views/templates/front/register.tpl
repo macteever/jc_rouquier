@@ -1,4 +1,5 @@
 {extends file='layouts/layout-portal.tpl'}
+{* {extends file='layouts/layout-full-width.tpl'} *}
 
 {* {block name='header'}{/block}
 {block name='footer'}{/block} *}

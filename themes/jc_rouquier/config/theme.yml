@@ -6,15 +6,12 @@ author:
 
 meta:
   compatibility:
-    from: 8.0
+    from: 9.0.0
     to: ~
   available_layouts:
     layout-full-width:
       name: Full width layout
       description: Ideal for product pages to maximize picture size
-    # layout-left-side-column:
-    #   name: One small left column
-    #   description: Great for CMS pages to show advertisements on the side
 
 parent: classic
 
@@ -26,12 +23,12 @@ assets:
       - id: google-font-inter
         path: https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap
         priority: 50
-      - id: jc-rouquier-theme
-        path: assets/css/theme.css
+      - id: jc-rouquier-main-css
+        path: assets/css/main.css
         priority: 200
 
   js:
     all:
-      - id: jc-rouquier-theme
-        path: assets/js/theme.js
+      - id: jc-rouquier-main-js
+        path: assets/js/main.js
         priority: 200
