@@ -162,7 +162,7 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
     private function validateSubmittedData(array &$data, array $countries, array &$errors): void
     {
         if (empty($data['firstname'])) {
-            $errors[] = 'Le prenom est obligatoire.';
+            $errors[] = 'Le prénom est obligatoire.';
         }
 
         if (empty($data['lastname'])) {
@@ -177,7 +177,7 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
         }
 
         if (empty($data['phone'])) {
-            $errors[] = 'Le telephone est obligatoire.';
+            $errors[] = 'Le téléphone est obligatoire.';
         } else {
             $data['phone'] = $this->normalizeDigits((string) $data['phone']);
             if (strlen((string) $data['phone']) !== 10) {
@@ -205,7 +205,7 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
         }
 
         if (empty($data['address1'])) {
-            $errors[] = 'L adresse est obligatoire.';
+            $errors[] = 'Adresse est obligatoire.';
         }
 
         if (empty($data['postcode'])) {
@@ -227,7 +227,7 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
         }, $countries);
 
         if ($countryId <= 0 || !in_array($countryId, $allowedCountryIds, true)) {
-            $errors[] = 'Le pays selectionne est invalide.';
+            $errors[] = 'Le pays sélectionné est invalide.';
         }
 
         $password = (string) ($data['password'] ?? '');
@@ -246,7 +246,7 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
         }
 
         if (empty($data['certify_cgv']) || !in_array((string) $data['certify_cgv'], ['1', 'on', 'true'], true)) {
-            $errors[] = 'Vous devez certifier l acceptation des CGV.';
+            $errors[] = 'Vous devez certifier l\'acceptation des CGV.';
         }
     }
 
@@ -272,7 +272,7 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
         );
 
         if (!$customer->add()) {
-            $errors[] = 'Impossible de creer le client pour le moment.';
+            $errors[] = 'Impossible de créer le client pour le moment.';
             return false;
         }
 
@@ -297,7 +297,7 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
 
         if (!$address->add()) {
             $customer->delete();
-            $errors[] = 'Impossible de creer l adresse pour le moment.';
+            $errors[] = 'Impossible de créer l\'adresse pour le moment.';
             return false;
         }
 
@@ -331,7 +331,7 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
 
         if (!$sent) {
             PrestaShopLogger::addLog(
-                sprintf('B2block: echec envoi email client demande (email=%s).', (string) $data['email']),
+                sprintf('B2block: échec envoi email client demande (email=%s).', (string) $data['email']),
                 2,
                 null,
                 'Customer',
@@ -380,7 +380,7 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
 
         if (!$sent) {
             PrestaShopLogger::addLog(
-                sprintf('B2block: echec envoi email admin demande (customer_id=%d, email=%s).', $customerId, (string) $data['email']),
+                sprintf('B2block: échec envoi email admin demande (customer_id=%d, email=%s).', $customerId, (string) $data['email']),
                 2,
                 null,
                 'Customer',

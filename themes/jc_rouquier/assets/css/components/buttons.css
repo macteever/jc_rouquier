@@ -29,9 +29,9 @@ button.btn-white {
 }
 button.btn-white:hover {
   background-color: var(--color-secondary);
+  color: var(--color-white);
 }
 button.btn-white:hover a{
-  color: var(--color-white);
 }
 button.btn-white a{
   color: var(--color-secondary);

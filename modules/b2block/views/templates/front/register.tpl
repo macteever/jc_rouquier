@@ -89,7 +89,10 @@
         </div>
         {if $success}
           <div class="b2block-register__success" role="status">
-            <p>Votre demande a ete envoyee. Votre compte est maintenant en attente de validation manuelle.</p>
+            <div class="flex-row gap-1 tag-success">  
+              <img src="{$smarty.const._MODULE_DIR_}b2block/views/img/icons/mark_email_read.svg" alt="validation" loading="lazy">
+              <p class="mb-0">Votre demande a ete envoyee. Votre compte est maintenant en attente de validation manuelle.</p>
+            </div>
           </div>
         {else}
         {if isset($errors) && $errors}
@@ -124,19 +127,19 @@
                 <div class="w-full bt-light-blue pt-20">
                   <p>
                     <label for="reg-firstname">Prénom</label>
-                    <input id="reg-firstname" type="text" name="firstname" value="{$form_data.firstname|default:''|escape:'htmlall':'UTF-8'}" required>
+                    <input id="reg-firstname" type="text" name="firstname" placeholder="Jean-Charles" value="{$form_data.firstname|default:''|escape:'htmlall':'UTF-8'}" required>
                   </p>
                   <p>
                     <label for="reg-lastname">Nom</label>
-                    <input id="reg-lastname" type="text" name="lastname" value="{$form_data.lastname|default:''|escape:'htmlall':'UTF-8'}" required>
+                    <input id="reg-lastname" type="text" name="lastname" placeholder="Martin" value="{$form_data.lastname|default:''|escape:'htmlall':'UTF-8'}" required>
                   </p>
                   <p>
                     <label for="reg-email">Email</label>
-                    <input id="reg-email" type="email" name="email" value="{$form_data.email|default:''|escape:'htmlall':'UTF-8'}" required>
+                    <input id="reg-email" type="email" name="email" placeholder="jc.martin@entreprise.fr" value="{$form_data.email|default:''|escape:'htmlall':'UTF-8'}" required>
                   </p>
                   <p>
                     <label for="reg-phone">Telephone</label>
-                    <input id="reg-phone" type="text" name="phone" value="{$form_data.phone|default:''|escape:'htmlall':'UTF-8'}" required>
+                    <input id="reg-phone" type="text" name="phone" placeholder="06 12 34 56 78" value="{$form_data.phone|default:''|escape:'htmlall':'UTF-8'}" required>
                   </p>
                 </div>
               </div>
@@ -146,86 +149,104 @@
             </div>
 
             <div class="b2block-register__step" data-step="2" data-step-title="Informations de l'entreprise" hidden>
-              <h2>Informations de l'entreprise</h2>
-              <p>
-                <label for="reg-company-name">Nom de la societe</label>
-                <input id="reg-company-name" type="text" name="company_name" value="{$form_data.company_name|default:''|escape:'htmlall':'UTF-8'}" required>
-              </p>
-              <p>
-                <label for="reg-company-legal">Raison sociale</label>
-                <input id="reg-company-legal" type="text" name="company_legal" value="{$form_data.company_legal|default:''|escape:'htmlall':'UTF-8'}" required>
-              </p>
-              <p>
-                <label for="reg-siret">SIRET</label>
-                <input id="reg-siret" type="text" name="siret" value="{$form_data.siret|default:''|escape:'htmlall':'UTF-8'}" required>
-              </p>
-              <p>
-                <label for="reg-vat">Numero TVA (optionnel)</label>
-                <input id="reg-vat" type="text" name="vat_number" value="{$form_data.vat_number|default:''|escape:'htmlall':'UTF-8'}">
-              </p>
-              <p class="b2block-register__actions mb-0">
+              <div class="b2block-register__form-container">
+                <h2>Informations de l'entreprise</h2>
+                <div class="w-full bt-light-blue pt-20">
+                  <p>
+                    <label for="reg-company-name">Nom de la societe</label>
+                    <input id="reg-company-name" type="text" name="company_name" placeholder="Martin Plomberie Services" value="{$form_data.company_name|default:''|escape:'htmlall':'UTF-8'}" required>
+                  </p>
+                  <p>
+                    <label for="reg-company-legal">Raison sociale</label>
+                    <input id="reg-company-legal" type="text" name="company_legal" placeholder="SARL Martin Plomberie" value="{$form_data.company_legal|default:''|escape:'htmlall':'UTF-8'}" required>
+                  </p>
+                  <p>
+                    <label for="reg-siret">SIRET</label>
+                    <input id="reg-siret" type="text" name="siret" placeholder="123 456 789 00012" value="{$form_data.siret|default:''|escape:'htmlall':'UTF-8'}" required>
+                  </p>
+                  <p>
+                    <label for="reg-vat">Numero TVA (optionnel)</label>
+                    <input id="reg-vat" type="text" name="vat_number" placeholder="FR12 123456789" value="{$form_data.vat_number|default:''|escape:'htmlall':'UTF-8'}">
+                  </p>
+                </div>
+              </div>
+              <p class="b2block-register__actions mt-20 mb-0">
                 <button class="btn-white flex-1" type="button" data-prev-step>Precedent</button>
                 <button class="btn-primary flex-1" type="button" data-next-step>Suivant</button>
               </p>
             </div>
 
             <div class="b2block-register__step" data-step="3" data-step-title="Adresse de l'entreprise" hidden>
-              <h2>Adresse de l'entreprise</h2>
-              <p>
-                <label for="reg-address1">Adresse</label>
-                <input id="reg-address1" type="text" name="address1" value="{$form_data.address1|default:''|escape:'htmlall':'UTF-8'}" required>
-              </p>
-              <p>
-                <label for="reg-postcode">Code postal</label>
-                <input id="reg-postcode" type="text" name="postcode" value="{$form_data.postcode|default:''|escape:'htmlall':'UTF-8'}" required>
-              </p>
-              <p>
-                <label for="reg-city">Ville</label>
-                <input id="reg-city" type="text" name="city" value="{$form_data.city|default:''|escape:'htmlall':'UTF-8'}" required>
-              </p>
-              <p>
-                <label for="reg-country">Pays</label>
-                <select id="reg-country" name="country" required>
-                  <option value="">Selectionnez un pays</option>
-                  {foreach from=$countries item=country}
-                    <option value="{$country.id_country|intval}" {if $form_data.country|default:'' == $country.id_country}selected{/if}>{$country.name|escape:'htmlall':'UTF-8'}</option>
-                  {/foreach}
-                </select>
-              </p>
-              <p class="b2block-register__actions mb-0">
+              <div class="b2block-register__form-container">
+                <h2>Adresse de l'entreprise</h2>
+                <div class="w-full bt-light-blue pt-20">
+                  <p>
+                    <label for="reg-address1">Adresse</label>
+                    <input id="reg-address1" type="text" name="address1" placeholder="12 rue des Artisans" value="{$form_data.address1|default:''|escape:'htmlall':'UTF-8'}" required>
+                  </p>
+                  <p>
+                    <label for="reg-postcode">Code postal</label>
+                    <input id="reg-postcode" type="text" name="postcode" placeholder="69003" value="{$form_data.postcode|default:''|escape:'htmlall':'UTF-8'}" required>
+                  </p>
+                  <p>
+                    <label for="reg-city">Ville</label>
+                    <input id="reg-city" type="text" name="city" placeholder="Lyon" value="{$form_data.city|default:''|escape:'htmlall':'UTF-8'}" required>
+                  </p>
+                  <p>
+                    <label for="reg-country">Pays</label>
+                    <select id="reg-country" name="country" required>
+                      <option value="">Selectionnez un pays</option>
+                      {foreach from=$countries item=country}
+                        <option value="{$country.id_country|intval}" {if $form_data.country|default:'' == $country.id_country}selected{/if}>{$country.name|escape:'htmlall':'UTF-8'}</option>
+                      {/foreach}
+                    </select>
+                  </p>
+                </div>
+              </div>
+              <p class="b2block-register__actions mt-20 mb-0">
                 <button class="btn-white flex-1" type="button" data-prev-step>Precedent</button>
                 <button class="btn-primary flex-1" type="button" data-next-step>Suivant</button>
               </p>
             </div>
 
             <div class="b2block-register__step" data-step="4" data-step-title="Acces au compte" hidden>
-              <h2>Acces au compte</h2>
-              <p>
-                <label for="reg-password">Mot de passe</label>
-                <input id="reg-password" type="password" name="password" minlength="8" required>
-              </p>
-              <p>
-                <label for="reg-password-confirm">Confirmation du mot de passe</label>
-                <input id="reg-password-confirm" type="password" name="password_confirm" minlength="8" required>
-              </p>
-              <p class="b2block-register__actions mb-0">
+              <div class="b2block-register__form-container">
+                <h2>Acces au compte</h2>
+                <div class="w-full bt-light-blue pt-20">
+                  <p>
+                    <label for="reg-password">Mot de passe</label>
+                    <input id="reg-password" type="password" name="password" placeholder="Minimum 8 caractères" minlength="8" required>
+                  </p>
+                  <p>
+                    <label for="reg-password-confirm">Confirmation du mot de passe</label>
+                    <input id="reg-password-confirm" type="password" name="password_confirm" placeholder="Confirmez votre mot de passe" minlength="8" required>
+                  </p>
+                </div>
+              </div>
+              <p class="b2block-register__actions mt-20 mb-0">
                 <button class="btn-white flex-1" type="button" data-prev-step>Precedent</button>
                 <button class="btn-primary flex-1" type="button" data-next-step>Suivant</button>
               </p>
             </div>
 
             <div class="b2block-register__step" data-step="5" data-step-title="Validation" hidden>
-              <h2>Validation</h2>
-              <p>
-                <label>
-                  <input type="checkbox" name="certify_cgv" value="1" {if $form_data.certify_cgv|default:''}checked{/if} required>
-                  Je certifie accepter les CGV et fournir des informations exactes.
-                </label>
-              </p>
-              <p class="b2block-register__actions mb-0">
-              <p class="b2block-register__actions ">
+              <div class="b2block-register__form-container">
+                <h2>Validation</h2>
+                <div class="w-full bt-light-blue pt-20">
+                  <p>
+                    <label class="flex-row align-items-center gap-5 fs-13">
+                      <input class="w-auto"type="checkbox" name="certify_cgv" value="1" {if $form_data.certify_cgv|default:''}checked{/if} required>
+                      Je certifie accepter les CGV et fournir des informations exactes.
+                    </label>
+                  </p>
+                  <div class="flex-row gap-1 tag-info mt-20">
+                    <p class="mb-0">Après inscription, notre équipe vérifiera vos informations avant activation du compte.</p>
+                  </div>
+                </div>
+              </div>
+              <p class="b2block-register__actions mt-20 mb-0">
                 <button class="btn-white flex-1" type="button" data-prev-step>Precedent</button>
-                <button class="btn-primary flex-1" type="submit" name="b2block_register_submit" value="1">Demander ouverture de mon compte</button>
+                <button class="btn-primary flex-1 text-nowrap" type="submit" name="b2block_register_submit" value="1">Demander l'ouverture de mon compte</button>
               </p>
             </div>
           </form>

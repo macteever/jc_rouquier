@@ -16,6 +16,14 @@ input{
   font-size: 1rem;
   width: 100%;
 }
+select{
+    padding: 0.65rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #CAD5E2;
+    background: #F3F3F5;
+    font-size: 1rem;
+    width: 100%;
+}
 input:focus {
   outline: 1px solid var(--color-primary);
   outline-offset: 1px;
