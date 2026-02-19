@@ -23,12 +23,18 @@ body {
 .justify-content-between{
   justify-content: space-between;
 }
+.justify-content-center{
+  justify-content: center;
+}
 .align-items-center{
   align-items: center;
 }
 .flex-wrap{
   flex-wrap: wrap;
 }
+.flex-1{flex: 1;}
+
+.w-full{width: 100%;}
 
 /* Color */
 .color-primary{color: var(--color-primary);}

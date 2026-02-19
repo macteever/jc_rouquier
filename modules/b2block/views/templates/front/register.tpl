@@ -83,50 +83,70 @@
 
     <section class="b2block-portal__right gutter-right">
       <section class="b2block-register" aria-labelledby="b2block-register-title">
+        <div class="b2block-signin-title">
+            <h1>Créer un compte professionnel</h1>
+            <p>L'inscription est réservée aux professionnels de la plomberie et du chauffage. Votre compte sera validé après vérification.</p>
+        </div>
         {if $success}
           <div class="b2block-register__success" role="status">
             <p>Votre demande a ete envoyee. Votre compte est maintenant en attente de validation manuelle.</p>
           </div>
         {else}
-          {if isset($errors) && $errors}
-            <div class="b2block-register__errors" role="alert">
-              <ul>
-                {foreach from=$errors item=error}
-                  <li>{$error|escape:'htmlall':'UTF-8'}</li>
-                {/foreach}
-              </ul>
-            </div>
-          {/if}
+        {if isset($errors) && $errors}
+          <div class="b2block-register__errors" role="alert">
+            <ul>
+              {foreach from=$errors item=error}
+                <li>{$error|escape:'htmlall':'UTF-8'}</li>
+              {/foreach}
+            </ul>
+          </div>
+        {/if}
 
           <form method="post" action="{$actionUrl|escape:'htmlall':'UTF-8'}" class="b2block-register__form" data-register-wizard>
             <input type="hidden" name="csrf_token" value="{$csrf_token|escape:'htmlall':'UTF-8'}">
             <input type="hidden" name="b2block_register_payload" value="" data-register-payload>
 
-            <div data-step="1">
-              <h2>Etape 1 - Contact</h2>
-              <p>
-                <label for="reg-firstname">Prenom</label>
-                <input id="reg-firstname" type="text" name="firstname" value="{$form_data.firstname|default:''|escape:'htmlall':'UTF-8'}" required>
-              </p>
-              <p>
-                <label for="reg-lastname">Nom</label>
-                <input id="reg-lastname" type="text" name="lastname" value="{$form_data.lastname|default:''|escape:'htmlall':'UTF-8'}" required>
-              </p>
-              <p>
-                <label for="reg-email">Email</label>
-                <input id="reg-email" type="email" name="email" value="{$form_data.email|default:''|escape:'htmlall':'UTF-8'}" required>
-              </p>
-              <p>
-                <label for="reg-phone">Telephone</label>
-                <input id="reg-phone" type="text" name="phone" value="{$form_data.phone|default:''|escape:'htmlall':'UTF-8'}" required>
-              </p>
-              <p>
-                <button type="button" data-next-step>Suivant</button>
+            <div class="b2block-register__progress" data-register-progress>
+              <div class="b2block-register__progress-header">
+                <p class="b2block-register__progress-count color-primary fw-500">
+                  Etape <span data-register-current-step>1</span> sur 5
+                </p>
+                <p class="b2block-register__progress-title" data-register-step-title>Informations personnelles</p>
+              </div>
+              <div class="b2block-register__progress-bar" role="progressbar" aria-valuemin="1" aria-valuemax="5" aria-valuenow="1">
+                <div class="b2block-register__progress-fill" data-register-progress-fill style="width: 20%;"></div>
+              </div>
+            </div>
+
+            <div class="b2block-register__step" data-step="1" data-step-title="Informations personnelles">
+              <div class="b2block-register__form-container">
+                <h2>Informations personnelles</h2>
+                <div class="w-full bt-light-blue pt-20">
+                  <p>
+                    <label for="reg-firstname">Prénom</label>
+                    <input id="reg-firstname" type="text" name="firstname" value="{$form_data.firstname|default:''|escape:'htmlall':'UTF-8'}" required>
+                  </p>
+                  <p>
+                    <label for="reg-lastname">Nom</label>
+                    <input id="reg-lastname" type="text" name="lastname" value="{$form_data.lastname|default:''|escape:'htmlall':'UTF-8'}" required>
+                  </p>
+                  <p>
+                    <label for="reg-email">Email</label>
+                    <input id="reg-email" type="email" name="email" value="{$form_data.email|default:''|escape:'htmlall':'UTF-8'}" required>
+                  </p>
+                  <p>
+                    <label for="reg-phone">Telephone</label>
+                    <input id="reg-phone" type="text" name="phone" value="{$form_data.phone|default:''|escape:'htmlall':'UTF-8'}" required>
+                  </p>
+                </div>
+              </div>
+              <p class="b2block-register__actions w-full flex-row mt-20 mb-0">
+                <button class="btn-primary flex-1" type="button" data-next-step>Suivant</button>
               </p>
             </div>
 
-            <div data-step="2" hidden>
-              <h2>Etape 2 - Entreprise</h2>
+            <div class="b2block-register__step" data-step="2" data-step-title="Informations de l'entreprise" hidden>
+              <h2>Informations de l'entreprise</h2>
               <p>
                 <label for="reg-company-name">Nom de la societe</label>
                 <input id="reg-company-name" type="text" name="company_name" value="{$form_data.company_name|default:''|escape:'htmlall':'UTF-8'}" required>
@@ -143,14 +163,14 @@
                 <label for="reg-vat">Numero TVA (optionnel)</label>
                 <input id="reg-vat" type="text" name="vat_number" value="{$form_data.vat_number|default:''|escape:'htmlall':'UTF-8'}">
               </p>
-              <p>
-                <button type="button" data-prev-step>Precedent</button>
-                <button type="button" data-next-step>Suivant</button>
+              <p class="b2block-register__actions mb-0">
+                <button class="btn-white flex-1" type="button" data-prev-step>Precedent</button>
+                <button class="btn-primary flex-1" type="button" data-next-step>Suivant</button>
               </p>
             </div>
 
-            <div data-step="3" hidden>
-              <h2>Etape 3 - Adresse</h2>
+            <div class="b2block-register__step" data-step="3" data-step-title="Adresse de l'entreprise" hidden>
+              <h2>Adresse de l'entreprise</h2>
               <p>
                 <label for="reg-address1">Adresse</label>
                 <input id="reg-address1" type="text" name="address1" value="{$form_data.address1|default:''|escape:'htmlall':'UTF-8'}" required>
@@ -172,14 +192,14 @@
                   {/foreach}
                 </select>
               </p>
-              <p>
-                <button type="button" data-prev-step>Precedent</button>
-                <button type="button" data-next-step>Suivant</button>
+              <p class="b2block-register__actions mb-0">
+                <button class="btn-white flex-1" type="button" data-prev-step>Precedent</button>
+                <button class="btn-primary flex-1" type="button" data-next-step>Suivant</button>
               </p>
             </div>
 
-            <div data-step="4" hidden>
-              <h2>Etape 4 - Mot de passe</h2>
+            <div class="b2block-register__step" data-step="4" data-step-title="Acces au compte" hidden>
+              <h2>Acces au compte</h2>
               <p>
                 <label for="reg-password">Mot de passe</label>
                 <input id="reg-password" type="password" name="password" minlength="8" required>
@@ -188,27 +208,32 @@
                 <label for="reg-password-confirm">Confirmation du mot de passe</label>
                 <input id="reg-password-confirm" type="password" name="password_confirm" minlength="8" required>
               </p>
-              <p>
-                <button type="button" data-prev-step>Precedent</button>
-                <button type="button" data-next-step>Suivant</button>
+              <p class="b2block-register__actions mb-0">
+                <button class="btn-white flex-1" type="button" data-prev-step>Precedent</button>
+                <button class="btn-primary flex-1" type="button" data-next-step>Suivant</button>
               </p>
             </div>
 
-            <div data-step="5" hidden>
-              <h2>Etape 5 - Validation</h2>
+            <div class="b2block-register__step" data-step="5" data-step-title="Validation" hidden>
+              <h2>Validation</h2>
               <p>
                 <label>
                   <input type="checkbox" name="certify_cgv" value="1" {if $form_data.certify_cgv|default:''}checked{/if} required>
                   Je certifie accepter les CGV et fournir des informations exactes.
                 </label>
               </p>
-              <p>
-                <button type="button" data-prev-step>Precedent</button>
-                <button type="submit" name="b2block_register_submit" value="1">Demander ouverture de mon compte</button>
+              <p class="b2block-register__actions mb-0">
+              <p class="b2block-register__actions ">
+                <button class="btn-white flex-1" type="button" data-prev-step>Precedent</button>
+                <button class="btn-primary flex-1" type="submit" name="b2block_register_submit" value="1">Demander ouverture de mon compte</button>
               </p>
             </div>
           </form>
         {/if}
+        <div class="flex-row justify-content-center flex-wrap gap-10 w-full">
+          <p class="mb-0 fs-14">Déjà inscrit ?</p>
+          <a href="#" class="b2block-access__btn signin fs-14 color-secondary fw-600">Se connecter</a>
+        </div>
       </section>
     </section>
   </main>

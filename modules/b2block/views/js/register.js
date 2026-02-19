@@ -30,6 +30,13 @@
     ? initialStepFromServer
     : (currentStepInput ? Number(currentStepInput.value || '1') : 1);
   var currentStep = Number.isNaN(initialStep) ? 1 : initialStep;
+  var totalSteps = steps.length;
+
+  var progressRoot = form.querySelector('[data-register-progress]');
+  var progressCurrentStep = form.querySelector('[data-register-current-step]');
+  var progressStepTitle = form.querySelector('[data-register-step-title]');
+  var progressFill = form.querySelector('[data-register-progress-fill]');
+  var progressBar = progressRoot ? progressRoot.querySelector('.b2block-register__progress-bar') : null;
 
   if (currentStep < 1 || currentStep > 5) {
     currentStep = 1;
@@ -217,6 +224,8 @@
       currentStepInput.value = String(currentStep);
     }
 
+    updateProgressUI();
+
     steps.forEach(function (stepEl) {
       var step = Number(stepEl.getAttribute('data-step'));
       var isActive = step === currentStep;
@@ -238,6 +247,39 @@
     });
 
     showErrors([]);
+  }
+
+  function updateProgressUI() {
+    if (!progressRoot) {
+      return;
+    }
+
+    var currentStepEl = form.querySelector('[data-step="' + currentStep + '"]');
+    var currentTitle = '';
+
+    if (currentStepEl) {
+      currentTitle = currentStepEl.getAttribute('data-step-title') || '';
+      if (!currentTitle) {
+        var stepTitleEl = currentStepEl.querySelector('h2');
+        currentTitle = stepTitleEl ? stepTitleEl.textContent.trim() : '';
+      }
+    }
+
+    if (progressCurrentStep) {
+      progressCurrentStep.textContent = String(currentStep);
+    }
+
+    if (progressStepTitle) {
+      progressStepTitle.textContent = currentTitle;
+    }
+
+    if (progressFill) {
+      progressFill.style.width = ((currentStep / totalSteps) * 100) + '%';
+    }
+
+    if (progressBar) {
+      progressBar.setAttribute('aria-valuenow', String(currentStep));
+    }
   }
 
   function buildPayload() {

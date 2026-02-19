@@ -4,24 +4,25 @@ button.btn-primary {
   border-radius: 8px;
   padding: 0.7rem 1rem;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
   cursor: pointer; 
   background-color: var(--color-primary);
   color: var(--color-white);
   transition-property: all;
   transition-duration: .3s;
+  text-transform: none;
 }
 button.btn-white {
   display: inline-block;
-  border: 0;
   border-radius: 8px;
+  border: 1px solid #CAD5E2;
+  background: var(--color-white);
   padding: 0.7rem 1rem;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
   cursor: pointer; 
-  background-color: var(--color-white);
   color: var(--color-secondary);
   transition-property: all;
   transition-duration: .3s;
