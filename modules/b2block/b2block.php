@@ -17,6 +17,10 @@ class B2block extends Module
 
         parent::__construct();
 
+        if ($this->id && !$this->isRegisteredInHook('moduleRoutes')) {
+            $this->registerHook('moduleRoutes');
+        }
+
         $this->displayName = 'B2B Lock (redirect guests)';
         $this->description = 'Redirect non-logged visitors to landing page, except login/forgot password.';
     }
@@ -24,10 +28,36 @@ class B2block extends Module
     public function install()
     {
         return parent::install()
+            && $this->registerHook('moduleRoutes')
             && $this->registerHook('actionDispatcherBefore')
             && $this->registerHook('actionFrontControllerSetMedia')
             && $this->registerHook('actionObjectCustomerUpdateBefore')
             && $this->registerHook('actionObjectCustomerUpdateAfter');
+    }
+
+    public function hookModuleRoutes()
+    {
+        // Clear PrestaShop cache after modifying routes so the router map is rebuilt.
+        return [
+            'module-b2block-access' => [
+                'rule' => 'se-connecter',
+                'controller' => 'access',
+                'keywords' => [],
+                'params' => [
+                    'fc' => 'module',
+                    'module' => $this->name,
+                ],
+            ],
+            'module-b2block-register' => [
+                'rule' => 'inscription',
+                'controller' => 'register',
+                'keywords' => [],
+                'params' => [
+                    'fc' => 'module',
+                    'module' => $this->name,
+                ],
+            ],
+        ];
     }
 
     public function hookActionFrontControllerSetMedia($params)
@@ -255,9 +285,31 @@ class B2block extends Module
 
     public function hookActionDispatcherBefore($params)
     {
+        $requestUri = (string) ($_SERVER['REQUEST_URI'] ?? '');
+        $requestPath = (string) parse_url($requestUri, PHP_URL_PATH);
+
+        // Keep legacy login slug unavailable and force the new canonical URL.
+        if ($requestPath === '/connexion') {
+            Tools::redirect($this->context->link->getModuleLink($this->name, 'access'));
+        }
+
         $fc = (string) Tools::getValue('fc');
         $module = (string) Tools::getValue('module');
         $controller = (string) Tools::getValue('controller');
+
+        // Force canonical pretty URLs for module front controllers.
+        if (
+            $fc === 'module'
+            && $module === $this->name
+            && in_array($controller, ['access', 'register'], true)
+            && strpos($requestPath, '/module/' . $this->name . '/') === 0
+        ) {
+            $targetUrl = $this->context->link->getModuleLink($this->name, $controller);
+            $targetPath = (string) parse_url($targetUrl, PHP_URL_PATH);
+            if ($targetPath !== '' && $targetPath !== $requestPath) {
+                Tools::redirect($targetUrl);
+            }
+        }
 
         // 1) On ne bloque pas le back-office
         if ($this->context->employee) {

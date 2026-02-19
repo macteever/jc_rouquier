@@ -41,6 +41,7 @@ class B2blockRegisterModuleFrontController extends ModuleFrontController
 
         $this->context->smarty->assign([
             'actionUrl' => $this->context->link->getModuleLink($this->module->name, 'register'),
+            'login_url' => $this->context->link->getModuleLink('b2block', 'access'),
             'countries' => $countries,
             'csrf_token' => $csrfToken,
             'success' => $success,

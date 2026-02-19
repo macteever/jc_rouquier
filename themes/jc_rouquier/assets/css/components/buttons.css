@@ -32,6 +32,7 @@ button.btn-white:hover {
   color: var(--color-white);
 }
 button.btn-white:hover a{
+  color: var(--color-white);
 }
 button.btn-white a{
   color: var(--color-secondary);

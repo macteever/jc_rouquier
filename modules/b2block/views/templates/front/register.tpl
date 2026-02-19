@@ -18,15 +18,15 @@
               <h3 id="b2block-register-title" class="b2block-access__card-title">À propos de JC Rouquier</h3>
               <p class="b2block-access__text">JC Rouquier accompagne les professionnels de la plomberie et du chauffage avec une large gamme de matériels, des marques reconnues et un service dédié aux installateurs.</p>
 
-              {if isset($register_url) && $register_url}
+              {if isset($login_url) && $login_url}
                 <button class="btn-white">
-                  <a class="b2block-access__btn btn-white" href="{$register_url|escape:'htmlall':'UTF-8'}">Créer un compte professionnel</a>
+                  <a class="b2block-access__btn btn-white" href="{$login_url|escape:'htmlall':'UTF-8'}">Me connecter</a>
                 </button>
               {else}
                 <button class="btn-white">
-                  <a class="b2block-access__btn " href="#">Créer un compte professionnel</a>
+                  <a class="b2block-access__btn " href="#">Me connecter</a>
                 </button>
-                <!-- TODO register_url: renseigner l'URL cible de la demande d'accès pro -->
+                <!-- TODO login_url: renseigner l'URL cible de la connexion -->
               {/if}
             </div>
             
@@ -253,7 +253,7 @@
         {/if}
         <div class="flex-row justify-content-center flex-wrap gap-10 w-full">
           <p class="mb-0 fs-14">Déjà inscrit ?</p>
-          <a href="#" class="b2block-access__btn signin fs-14 color-secondary fw-600">Se connecter</a>
+          <a href="{$login_url|escape:'htmlall':'UTF-8'}" class="b2block-access__btn signin fs-14 color-secondary fw-600">Se connecter</a>
         </div>
       </section>
     </section>

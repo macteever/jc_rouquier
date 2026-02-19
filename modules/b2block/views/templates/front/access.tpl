@@ -145,7 +145,7 @@
               {if isset($register_url) && $register_url}
                 <div class="flex-row justify-content-between flex-wrap">
                   <p>Pas encore de compte ?</p>
-                  <a class="b2block-access__btn" href="{$register_url|escape:'htmlall':'UTF-8'}">Créer un compte professionnel</a>
+                  <a class="b2block-access__btn b2block-access__btn signin fs-14 color-secondary fw-600" href="{$register_url|escape:'htmlall':'UTF-8'}">Créer un compte professionnel</a>
                 </div>
               {else}
                 <div class="flex-row justify-content-between flex-wrap gap-5 pt-20 pb-20 bb-light-blue">

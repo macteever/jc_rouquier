@@ -11,6 +11,7 @@ class B2blockAccessModuleFrontController extends ModuleFrontController
         $this->context->smarty->assign([
             'login_url' => $this->context->link->getPageLink('authentication', true),
             'forgot_url' => $this->context->link->getPageLink('password', true),
+            'register_url' => $this->context->link->getModuleLink('b2block', 'register'),
         ]);
 
         $this->setTemplate('module:b2block/views/templates/front/access.tpl');
