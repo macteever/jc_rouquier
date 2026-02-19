@@ -3,4 +3,46 @@
   --color-secondary: #0B3E5E;
   --color-background: #F8FAFC;
   --color-white: #FFFFFF;
+  /* Layout rules */
+  --gutter-left: 20px;
+  --gutter-right: 20px;
+}
+
+
+@media (min-width: 768px) {  
+  :root {
+    /* Layout rules */
+    --gutter-left: calc((100% - 720px) / 2);
+    --gutter-right: calc((100% - 720px) / 2);
+  }
+}
+
+@media (min-width: 992px) {  
+  :root {
+    /* Layout rules */
+    --gutter-left: calc((100% - 960px) / 2);
+    --gutter-right: calc((100% - 960px) / 2);
+  }
+}
+
+@media (min-width: 1200px) { 
+  :root {
+    /* Layout rules */
+    --gutter-left: calc((100% - 1140px) / 2);
+    --gutter-right: calc((100% - 1140px) / 2);
+  }
+}
+@media (min-width: 1440px) { 
+  :root {
+    /* Layout rules */
+    --gutter-left: calc((100% - 1280px) / 2);
+    --gutter-right: calc((100% - 1280px) / 2);
+  }
+}
+@media (min-width: 1600px) { 
+  :root {
+    /* Layout rules */
+    --gutter-left: calc((100% - 1440px) / 2);
+    --gutter-right: calc((100% - 1440px) / 2);
+  }
 }
