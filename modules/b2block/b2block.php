@@ -287,9 +287,11 @@ class B2block extends Module
     {
         $requestUri = (string) ($_SERVER['REQUEST_URI'] ?? '');
         $requestPath = (string) parse_url($requestUri, PHP_URL_PATH);
+        $requestMethod = strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET'));
 
         // Keep legacy login slug unavailable and force the new canonical URL.
-        if ($requestPath === '/connexion') {
+        // Do this only for GET, otherwise login POST to native authentication is broken.
+        if ($requestPath === '/connexion' && $requestMethod === 'GET') {
             Tools::redirect($this->context->link->getModuleLink($this->name, 'access'));
         }
 

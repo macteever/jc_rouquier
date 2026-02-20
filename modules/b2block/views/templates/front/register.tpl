@@ -91,7 +91,7 @@
           <div class="b2block-register__success" role="status">
             <div class="flex-row gap-1 tag-success">  
               <img src="{$smarty.const._MODULE_DIR_}b2block/views/img/icons/mark_email_read.svg" alt="validation" loading="lazy">
-              <p class="mb-0">Votre demande a ete envoyee. Votre compte est maintenant en attente de validation manuelle.</p>
+              <p class="mb-0">Votre demande a ete envoyée. Votre compte est maintenant en attente de validation.</p>
             </div>
           </div>
         {else}

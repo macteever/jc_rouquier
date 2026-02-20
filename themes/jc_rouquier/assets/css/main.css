@@ -11,3 +11,4 @@ JC Rouquier Theme - Entry point
 @import "components/buttons.css";
 @import "components/forms.css";
 
+@import "pages/password.css";

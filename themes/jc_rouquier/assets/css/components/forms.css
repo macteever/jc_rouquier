@@ -1,5 +1,5 @@
 /* Form styles */
-label {
+label, label.form-control-label{
   color: #314158;
   font-size: 14px;
   font-style: normal;
@@ -7,8 +7,8 @@ label {
   line-height: 14px; /* 100% */
   letter-spacing: -0.15px;
 }
-input{
-  width: 100%;
+input, .forgotten-password .form-fields input, input.form-control{
+  height: auto;
   padding: 0.65rem 0.75rem;
   border-radius: 8px;
   border: 1px solid #CAD5E2;
@@ -47,4 +47,5 @@ input[type="submit"], button[type="submit"]{
     font-weight: 500;
     line-height: 20px;
     border: none;
+    height: auto!important;
 }

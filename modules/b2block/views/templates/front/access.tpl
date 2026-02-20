@@ -87,7 +87,7 @@
           <h1 id="b2block-login-title" class="b2block-access__card-title">Espace professionnel</h1>
           <p>Accédez à votre compte pour commander votre matériel</p>
         </div>
-        <article class="" aria-labelledby="b2block-login-title">
+        <article aria-labelledby="b2block-login-title">
 
           {if isset($notifications) && $notifications}
             <div class="b2block-access__notice" role="alert">
