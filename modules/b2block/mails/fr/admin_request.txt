@@ -1,15 +1,16 @@
-Nouvelle demande d'inscription pro.
+Nouvelle demande d'inscription professionnelle.
 
-- Prenom : {firstname}
-- Nom : {lastname}
-- Email : {email}
-- Telephone : {phone}
-- Societe : {company_name}
-- Raison sociale : {company_legal}
-- SIRET : {siret}
-- TVA : {vat_number}
-- Adresse : {address1}, {postcode} {city}, {country}
-- Fiche client BO : {bo_customer_url}
+Prenom : {firstname}
+Nom : {lastname}
+Email : {email}
+Telephone : {phone}
+Societe : {company_name}
+Raison sociale : {company_legal}
+SIRET : {siret}
+TVA : {vat_number}
+Adresse : {address1}, {postcode} {city}, {country}
+
+Voir le client (Back Office) : {bo_customer_url}
 
 {shop_name}
 {shop_url}

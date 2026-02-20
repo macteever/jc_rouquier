@@ -1,6 +1,0 @@
-Hello {firstname} {lastname},
-
-Your professional account has been approved. You can now sign in.
-
-{shop_name}
-{shop_url}

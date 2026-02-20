@@ -1,16 +1,21 @@
 Bonjour {firstname} {lastname},
 
-Votre demande d'inscription professionnelle a bien ete recue et est en attente de validation manuelle.
+Votre demande d'inscription professionnelle a bien ete enregistree.
+Elle est en attente de validation manuelle par notre equipe.
 
 Recapitulatif :
-- Email : {email}
-- Telephone : {phone}
-- Societe : {company_name}
-- Raison sociale : {company_legal}
-- SIRET : {siret}
-- TVA : {vat_number}
-- Adresse : {address1}, {postcode} {city}, {country}
+Email : {email}
+Telephone : {phone}
+Societe : {company_name}
+Raison sociale : {company_legal}
+SIRET : {siret}
+TVA : {vat_number}
+Adresse : {address1}, {postcode} {city}, {country}
 
-Cordialement,
+Prochaines etapes :
+1. Verification de vos informations professionnelles
+2. Validation de votre compte
+3. Email de confirmation apres activation
+
 {shop_name}
 {shop_url}
