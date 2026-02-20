@@ -108,7 +108,7 @@
             <header>
               <p class="send-renew-password-link">Créez et confirmez votre nouveau mot de passe</p>
             </header>
-          </div
+          </div>
           <form action="{$urls.pages.password}" method="post">
             <ul class="ps-alert-error">
               {foreach $errors as $error}
