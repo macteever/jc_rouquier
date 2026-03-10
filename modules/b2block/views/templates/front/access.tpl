@@ -33,7 +33,9 @@
             <div class="b2block-access__partners">
               <p><span>Nos partenaires</span></p>
               <ul class="portal-partners-logos">
+                <li><img src="{$smarty.const._MODULE_DIR_}b2block/views/img/partners/aalberts.svg" alt="Aalberts" loading="lazy"></li>
                 <li><img src="{$smarty.const._MODULE_DIR_}b2block/views/img/partners/armacell.svg" alt="Fournisseur 1" loading="lazy"></li>
+                <li><img src="{$smarty.const._MODULE_DIR_}b2block/views/img/partners/lapesa.svg" alt="Lapesa" loading="lazy"></li>
                 <li><img src="{$smarty.const._MODULE_DIR_}b2block/views/img/partners/rehau.svg" alt="Fournisseur 2" loading="lazy"></li>
                 <li><img src="{$smarty.const._MODULE_DIR_}b2block/views/img/partners/rems.svg" alt="Fournisseur 3" loading="lazy"></li>
                 <li><img src="{$smarty.const._MODULE_DIR_}b2block/views/img/partners/uponor.svg" alt="Fournisseur 3" loading="lazy"></li>
