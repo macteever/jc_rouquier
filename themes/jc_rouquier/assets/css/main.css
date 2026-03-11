@@ -9,6 +9,7 @@ JC Rouquier Theme - Entry point
 @import "layout/portal.css";
 
 @import "partials/header.css";
+@import "partials/footer.css";
 @import "partials/cart.css";
 
 @import "components/buttons.css";
