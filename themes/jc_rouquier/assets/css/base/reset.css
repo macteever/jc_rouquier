@@ -12,6 +12,9 @@ body {
   padding-right: var(--gutter-right);
   padding-left: 20px;
 }
+.relative{
+  position: relative;
+}
 .flex-row{
   display: flex;
   flex-direction: row;
@@ -28,6 +31,12 @@ body {
 }
 .align-items-center{
   align-items: center;
+}
+.align-items-start{
+  align-items: flex-start;
+}
+.align-items-end{
+  align-items: flex-end;
 }
 .flex-wrap{
   flex-wrap: wrap;

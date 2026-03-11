@@ -8,7 +8,21 @@ JC Rouquier Theme - Entry point
 
 @import "layout/portal.css";
 
+@import "partials/header.css";
+@import "partials/cart.css";
+
 @import "components/buttons.css";
 @import "components/forms.css";
 
 @import "pages/password.css";
+
+section#wrapper{
+    padding-top: 10rem;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    section#wrapper {
+        padding-top: 5rem;
+    }
+}
