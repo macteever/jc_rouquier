@@ -39,6 +39,7 @@ services:
     volumes:
       - ps_data:/var/www/html
       - ./modules/b2block:/var/www/html/modules/b2block
+      - ./modules/jcrouquierhomepage:/var/www/html/modules/jcrouquierhomepage
       - ./themes/jc_rouquier:/var/www/html/themes/jc_rouquier
 
   mailpit:

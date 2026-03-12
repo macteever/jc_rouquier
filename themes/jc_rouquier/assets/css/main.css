@@ -18,7 +18,11 @@ JC Rouquier Theme - Entry point
 @import "pages/password.css";
 
 section#wrapper{
-    padding-top: 10rem;
+    padding-top: 8rem;
+}
+section#wrapper div#content-wrapper{
+    padding-left: 0px;   
+    padding-right: 0px;   
 }
 
 /* Responsive */
