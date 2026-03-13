@@ -22,10 +22,16 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{extends file='layouts/layout-home.tpl'}
+{extends file='layouts/layout-both-columns.tpl'}
 
-{block name='content'}
-  <section id="content" class="page-home">
-    {hook h='displayHome'}
-  </section>
+{block name='left_column'}{/block}
+
+{block name='content_wrapper'}
+  <div id="content-wrapper" class="js-content-wrapper right-column">
+    {hook h="displayContentWrapperTop"}
+    {block name='content'}
+      <p>Hello world! This is HTML5 Boilerplate.</p>
+    {/block}
+    {hook h="displayContentWrapperBottom"}
+  </div>
 {/block}

@@ -40,7 +40,7 @@
       {hook h='displayAfterBodyOpeningTag'}
     {/block}
 
-    <main>
+    <main class="home-layout">
       {block name='product_activation'}
         {include file='catalog/_partials/product-activation.tpl'}
       {/block}
@@ -51,51 +51,47 @@
         {/block}
       </header>
 
-      <section id="wrapper" class="site-wrapper">
+      <section id="wrapper">
         {block name='notifications'}
           {include file='_partials/notifications.tpl'}
         {/block}
 
         {hook h="displayWrapperTop"}
-        
-        <div id="wrapper-breadcrumb">
-          <div class="container">
-            {block name='breadcrumb'}
-              {include file='_partials/breadcrumb.tpl'}
-            {/block}
-          </div>  
-        </div>
-        
-        <div class="catalog-layout container">
-          {block name="left_column"}
-            <aside id="left-column" class="catalog-sidebar">
-              {if $page.page_name == 'product'}
-                {hook h='displayLeftColumnProduct' product=$product category=$category}
-              {else}
-                {hook h="displayLeftColumn"}
-              {/if}
-            </aside>
+          {block name='breadcrumb'}
+            {include file='_partials/breadcrumb.tpl'}
           {/block}
 
-          {block name="content_wrapper"}
-            <main id="content-wrapper" class="catalog-content js-content-wrapper">
-              {hook h="displayContentWrapperTop"}
-              {block name="content"}
-                <p>Hello world! This is HTML5 Boilerplate.</p>
-              {/block}
+          <div class="row">
+            {* {block name="left_column"}
+              <div id="left-column" class="col-xs-12 col-md-4 col-lg-3">
+                {if $page.page_name == 'product'}
+                  {hook h='displayLeftColumnProduct' product=$product category=$category}
+                {else}
+                  {hook h="displayLeftColumn"}
+                {/if}
+              </div>
+            {/block} *}
 
-              {block name="right_column"}
+            {block name="content_wrapper"}
+              <div id="content-wrapper" class="js-content-wrapper">
+                {hook h="displayContentWrapperTop"}
+                {block name="content"}
+                  <p>Hello world! This is HTML5 Boilerplate.</p>
+                {/block}
+                {hook h="displayContentWrapperBottom"}
+              </div>
+            {/block}
+
+            {* {block name="right_column"}
+              <div id="right-column" class="col-xs-12 col-md-4 col-lg-3">
                 {if $page.page_name == 'product'}
                   {hook h='displayRightColumnProduct'}
                 {else}
                   {hook h="displayRightColumn"}
                 {/if}
-              {/block}
-
-              {hook h="displayContentWrapperBottom"}
-            </main>
-          {/block}
-        </div>
+              </div>
+            {/block} *}
+          </div>
         {hook h="displayWrapperBottom"}
       </section>
 

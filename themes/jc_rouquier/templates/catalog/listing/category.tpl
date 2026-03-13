@@ -22,10 +22,12 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-{extends file='layouts/layout-home.tpl'}
+{extends file='catalog/listing/product-list.tpl'}
 
-{block name='content'}
-  <section id="content" class="page-home">
-    {hook h='displayHome'}
-  </section>
+{block name='product_list_header'}
+    {include file='catalog/_partials/category-header.tpl' listing=$listing category=$category}
+{/block}
+
+{block name='product_list_footer'}
+    {include file='catalog/_partials/category-footer.tpl' listing=$listing category=$category}
 {/block}

@@ -11,8 +11,10 @@ JC Rouquier Theme - Entry point
 @import "partials/header.css";
 @import "partials/footer.css";
 @import "partials/cart.css";
+@import "partials/catalog.css";
 
 @import "components/buttons.css";
+@import "components/breadcrumb.css";
 @import "components/forms.css";
 
 @import "pages/password.css";
@@ -23,6 +25,10 @@ section#wrapper{
 section#wrapper div#content-wrapper{
     padding-left: 0px;   
     padding-right: 0px;   
+}
+#wrapper .breadcrumb{
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 /* Responsive */
