@@ -34,6 +34,6 @@ section#wrapper div#content-wrapper{
 /* Responsive */
 @media (max-width: 991px) {
     section#wrapper {
-        padding-top: 5rem;
+        padding-top: 4.5rem;
     }
 }

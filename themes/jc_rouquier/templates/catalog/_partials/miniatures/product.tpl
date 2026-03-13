@@ -24,103 +24,57 @@
  *}
 {block name='product_miniature_item'}
 <div class="js-product product">
-  <article class="product-miniature js-product-miniature" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
-    <div class="thumbnail-container">
-      <div class="thumbnail-top">
-        {block name='product_thumbnail'}
-          {if $product.cover}
-            <a href="{$product.url}" class="thumbnail product-thumbnail">
-              <picture>
-                {if !empty($product.cover.bySize.home_default.sources.avif)}<source srcset="{$product.cover.bySize.home_default.sources.avif}" type="image/avif">{/if}
-                {if !empty($product.cover.bySize.home_default.sources.webp)}<source srcset="{$product.cover.bySize.home_default.sources.webp}" type="image/webp">{/if}
-                <img
-                  src="{$product.cover.bySize.home_default.url}"
-                  alt="{if !empty($product.cover.legend)}{$product.cover.legend}{else}{$product.name|truncate:30:'...'}{/if}"
-                  loading="lazy"
-                  data-full-size-image-url="{$product.cover.large.url}"
-                  width="{$product.cover.bySize.home_default.width}"
-                  height="{$product.cover.bySize.home_default.height}"
-                />
-              </picture>
-            </a>
-          {else}
-            <a href="{$product.url}" class="thumbnail product-thumbnail">
-              <picture>
-                {if !empty($urls.no_picture_image.bySize.home_default.sources.avif)}<source srcset="{$urls.no_picture_image.bySize.home_default.sources.avif}" type="image/avif">{/if}
-                {if !empty($urls.no_picture_image.bySize.home_default.sources.webp)}<source srcset="{$urls.no_picture_image.bySize.home_default.sources.webp}" type="image/webp">{/if}
-                <img
-                  src="{$urls.no_picture_image.bySize.home_default.url}"
-                  loading="lazy"
-                  width="{$urls.no_picture_image.bySize.home_default.width}"
-                  height="{$urls.no_picture_image.bySize.home_default.height}"
-                />
-              </picture>
-            </a>
-          {/if}
-        {/block}
+  <article class="product-miniature js-product-miniature product-card" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
+    <a href="{$product.url}" class="product-card-image">
+      {if $product.cover}
+        <img
+          src="{$product.cover.bySize.home_default.url}"
+          alt="{$product.name}"
+          loading="lazy"
+        >
+      {else}
+        <img
+          src="{$urls.no_picture_image.bySize.home_default.url}"
+          alt="{$product.name}"
+          loading="lazy"
+        >
+      {/if}
+    </a>
 
-        <div class="highlighted-informations{if !$product.main_variants} no-variants{/if}">
-          {block name='quick_view'}
-            <a class="quick-view js-quick-view" href="#" data-link-action="quickview">
-              <i class="material-icons search">&#xE8B6;</i> {l s='Quick view' d='Shop.Theme.Actions'}
-            </a>
-          {/block}
+    <div class="product-card-body">
+      <div class="flex-col">
+        <h3 class="product-card-title">
+          <a class="fw-500 color-primary" href="{$product.url}">
+            {$product.name}
+          </a>
+        </h3>
 
-          {block name='product_variants'}
-            {if $product.main_variants}
-              {include file='catalog/_partials/variant-links.tpl' variants=$product.main_variants}
-            {/if}
-          {/block}
+        <div class="product-card-reference">
+          Réf: {if $product.reference}{$product.reference}{else}-{/if}
         </div>
       </div>
 
-      <div class="product-description">
-        {block name='product_name'}
-          {if $page.page_name == 'index'}
-            <h3 class="h3 product-title"><a href="{$product.url}" content="{$product.url}">{$product.name|truncate:30:'...'}</a></h3>
-          {else}
-            <h2 class="h3 product-title"><a href="{$product.url}" content="{$product.url}">{$product.name|truncate:30:'...'}</a></h2>
-          {/if}
-        {/block}
-
-        {block name='product_price_and_shipping'}
+      <div class="flex-col gap-10">
+        <div>
           {if $product.show_price}
-            <div class="product-price-and-shipping">
-              {if $product.has_discount}
-                {hook h='displayProductPriceBlock' product=$product type="old_price"}
-
-                <span class="regular-price" aria-label="{l s='Regular price' d='Shop.Theme.Catalog'}">{$product.regular_price}</span>
-                {if $product.discount_type === 'percentage'}
-                  <span class="discount-percentage discount-product">{$product.discount_percentage}</span>
-                {elseif $product.discount_type === 'amount'}
-                  <span class="discount-amount discount-product">{$product.discount_amount_to_display}</span>
-                {/if}
-              {/if}
-
-              {hook h='displayProductPriceBlock' product=$product type="before_price"}
-
-              <span class="price" aria-label="{l s='Price' d='Shop.Theme.Catalog'}">
-                {capture name='custom_price'}{hook h='displayProductPriceBlock' product=$product type='custom_price' hook_origin='products_list'}{/capture}
-                {if '' !== $smarty.capture.custom_price}
-                  {$smarty.capture.custom_price nofilter}
-                {else}
-                  {$product.price}
-                {/if}
-              </span>
-
-              {hook h='displayProductPriceBlock' product=$product type='unit_price'}
-
-              {hook h='displayProductPriceBlock' product=$product type='weight'}
+            <div class="product-card-price fw-700 color-primary fs-20">
+              {$product.price}
             </div>
           {/if}
-        {/block}
 
-        {block name='product_reviews'}
-          {hook h='displayProductListReviews' product=$product}
-        {/block}
+          <div class="product-card-unit fs-12">
+            HT / unité
+          </div>
+        </div>
+
+        <div class="product-card-actions">
+          {include file='catalog/_partials/product-add-to-cart.tpl'}
+
+          <a href="{$product.url}" class="product-details-btn">
+            Détails
+          </a>
+        </div>
       </div>
-
-      {include file='catalog/_partials/product-flags.tpl'}
     </div>
   </article>
 </div>
