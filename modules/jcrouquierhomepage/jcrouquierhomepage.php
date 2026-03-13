@@ -67,32 +67,32 @@ class Jcrouquierhomepage extends Module
             [
                 'name' => 'Aalberts',
                 'logo' => $this->_path . 'views/img/aalberts.png',
-                'url' => '#',
+                'url' => '/6-accessoires',
             ],
             [
                 'name' => 'Armacell',
                 'logo' => $this->_path . 'views/img/armacell.png',
-                'url' => '#',
+                'url' => '/6-accessoires',
             ],
             [
                 'name' => 'Lapesa',
                 'logo' => $this->_path . 'views/img/lapesa.png',
-                'url' => '#',
+                'url' => '6-accessoires',
             ],
             [
                 'name' => 'rehau',
                 'logo' => $this->_path . 'views/img/rehau.png',
-                'url' => '#',
+                'url' => '6-accessoires',
             ],
             [
                 'name' => 'rems',
                 'logo' => $this->_path . 'views/img/rems.png',
-                'url' => '#',
+                'url' => '6-accessoires',
             ],
             [
                 'name' => 'uponor',
                 'logo' => $this->_path . 'views/img/uponor.png',
-                'url' => '#',
+                'url' => '6-accessoires',
             ],
         ];
 
