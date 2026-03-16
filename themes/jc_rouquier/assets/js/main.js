@@ -35,4 +35,19 @@ document.addEventListener('DOMContentLoaded', function () {
       setMenuState(false);
     }
   });
+
+  // Add to cart
+  document.addEventListener('click', function(e) {
+
+    if (e.target.classList.contains('qty-up')) {
+      const input = e.target.parentNode.querySelector('.qty-input');
+      input.stepUp();
+    }
+
+    if (e.target.classList.contains('qty-down')) {
+      const input = e.target.parentNode.querySelector('.qty-input');
+      input.stepDown();
+    }
+
+  });
 });

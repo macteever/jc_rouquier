@@ -52,9 +52,9 @@
       </header>
 
       <section id="wrapper" class="site-wrapper">
-        {block name='notifications'}
+        {* {block name='notifications'}
           {include file='_partials/notifications.tpl'}
-        {/block}
+        {/block} *}
 
         {hook h="displayWrapperTop"}
         
