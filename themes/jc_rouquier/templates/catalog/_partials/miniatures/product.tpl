@@ -68,7 +68,7 @@
         </div>
 
         <div class="product-card-actions">
-          {include file='catalog/_partials/product-add-to-cart.tpl'}
+          {include file='catalog/_partials/product-miniature-add-to-cart.tpl'}
 
           <a href="{$product.url}" class="product-details-btn">
             Détails

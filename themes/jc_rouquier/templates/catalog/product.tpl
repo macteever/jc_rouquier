@@ -144,6 +144,7 @@
 
     {block name='product_footer'}
       {hook h='displayFooterProduct' product=$product category=$category}
+      {* {hook h='displayFooterProduct'} *}
     {/block}
 
     {block name='product_images_modal'}

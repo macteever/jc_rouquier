@@ -23,12 +23,18 @@ assets:
       - id: google-font-inter
         path: https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap
         priority: 50
+      - id: swiper-css
+        path: assets/vendor/swiper/swiper-bundle.min.css
+        priority: 120
       - id: jc-rouquier-main-css
         path: assets/css/main.css
         priority: 200
 
   js:
     all:
+      - id: swiper-js
+        path: assets/vendor/swiper/swiper-bundle.min.js
+        priority: 150
       - id: jc-rouquier-main-js
         path: assets/js/main.js
         priority: 200

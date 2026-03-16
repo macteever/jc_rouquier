@@ -99,12 +99,12 @@ article.product-miniature.js-product-miniature.product-card{
   align-items: stretch;
   gap: 8px;
 }
-.product-card-actions .product-add-to-cart.js-product-add-to-cart{
+.product-card-actions .product-add-to-cart.js-product-add-to-cart, .product-card-actions form.add-to-cart-or-refresh{
   flex: 2;
 }
-.product-card-actions .product-add-to-cart.js-product-add-to-cart button[type="submit"]{
+.product-card-actions .product-add-to-cart.js-product-add-to-cart button[type="submit"], .product-card-actions form.add-to-cart-or-refresh button[type="submit"]{
   font-size: 15px;
-
+  width: auto;
 }
 .product-card-actions a.product-details-btn{
   display: flex;
@@ -113,6 +113,7 @@ article.product-miniature.js-product-miniature.product-card{
   align-items: center;
   gap: 8px;
   flex-shrink: 0;
+  flex: 1;
   border-radius: 8px;
   border: 1px solid #CAD5E2;
   background: #FFF;
