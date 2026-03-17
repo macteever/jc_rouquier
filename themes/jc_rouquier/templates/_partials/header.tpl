@@ -24,6 +24,11 @@
             <img src="{$shop.logo_details.src}" alt="{$shop.name}">
           </a>
         </div>
+
+        <div class="header-search">
+          {hook h='displaySearch'}
+        </div>
+
         <div class="header-actions flex-row gap-20">
           {hook h='displayNav1'}
         </div>

@@ -1,0 +1,23 @@
+div#search_widget{
+    width: 400px;
+    max-width: 100%;
+}
+div#search_widget form input{
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #CAD5E2;
+    background: #F3F3F5;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    div#search_widget{
+        width: auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .header-search{
+        display: none;
+    }
+}

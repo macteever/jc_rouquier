@@ -21,6 +21,7 @@ JC Rouquier Theme - Entry point
 @import "components/breadcrumb.css";
 @import "components/forms.css";
 @import "components/reassurance.css";
+@import "components/searchbar.css";
 
 @import "pages/password.css";
 
