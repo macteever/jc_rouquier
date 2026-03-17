@@ -10,11 +10,12 @@ JC Rouquier Theme - Entry point
 
 @import "partials/header.css";
 @import "partials/footer.css";
-@import "partials/cart.css";
 @import "partials/catalog.css";
-@import "partials/cart.css";
 @import "partials/product.css";
 @import "partials/product-similar.css";
+@import "partials/cart.css";
+@import "partials/checkout.css";
+@import "partials/order-confirmation.css";
 
 @import "components/buttons.css";
 @import "components/breadcrumb.css";

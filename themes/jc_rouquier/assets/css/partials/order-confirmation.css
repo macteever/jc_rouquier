@@ -1,0 +1,37 @@
+body#order-confirmation .card{ 
+    border-radius: 10px;
+    border: 1px solid #E2E8F0;
+    background: #FFF; 
+    overflow: hidden;
+}
+body#order-confirmation h3.h1.card-title{ 
+    color: var(--color-primary, rgba(13, 85, 130, 0.99));
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 32px;
+    letter-spacing: 0.07px;
+    text-transform: none;
+}
+body#order-confirmation .card-block{
+    padding: 25px 20px;
+}
+body#order-confirmation .card-block p{
+    color: #314158;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: -0.312px;
+    margin-bottom: 0;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    body#order-confirmation .card-block {
+        padding: 1rem;
+    }
+    body#order-confirmation h3.h1.card-title{ 
+        font-size: 24px;
+    }
+}
