@@ -1,3 +1,25 @@
+body#cart div#wrapper-breadcrumb{
+    display: none;
+}
+body#cart section#wrapper {
+    padding-top: 10rem;
+}
+.cart-grid{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+.cart-grid-body .cart-container, .cart-grid .card.cart-summary{
+    border-radius: 10px;
+    border: 1px solid #E2E8F0;
+    background: #FFF;
+}
+.cart-grid-body .cart-container .separator {
+    margin: 0;
+    border-color:#E2E8F0;
+}
+
 .cart-link {
   display: inline-flex;
   align-items: center;
@@ -19,6 +41,29 @@
     justify-content: center;
     align-items: center;
 }
+.cart-grid-body .card-block h1{
+    color: var(--color-primary, rgba(13, 85, 130, 0.99));
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 32px;
+    letter-spacing: 0.07px;
+    text-transform: none;
+}
+.product-line-grid{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+    /* justify-content: space-between; */
+}
+.product-line-grid .product-line-grid-left{
+    width: fit-content;
+}
+.product-line-grid-right.product-line-actions{
+    display: flex;
+    margin-left: auto;
+}
 /* Modal */
 #blockcart-modal .product-name{
     color: var(--color-primary);
@@ -29,9 +74,17 @@
     background: var(--color-white);
 }
 
+
+
 /* Responsive */
 
 @media (max-width: 991px) {
+    body#cart section#wrapper {
+        padding-top: 6rem;
+    }
+    .cart-grid{
+        grid-template-columns: 1fr;
+    }
     .cart-link__count{
         font-size: 12px;
         position: absolute;
@@ -39,12 +92,37 @@
         overflow: hidden;
         padding: 2px 8px;
     }
+    .cart-grid-body, .cart-grid-right{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+}
+@media (max-width: 767px) {
+    .card-block {
+        padding: 1rem;
+    }
 
 }
 @media (max-width: 575px) {
+    .cart-grid-body .cart-overview {
+        padding: 1rem;
+    }
+    .product-line-grid{
+        flex-wrap: wrap;
+    }
+    .product-line-grid-body{
+        width: 50%;
+    }
+    .cart-items{
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    /* Modal */
     #blockcart-modal .modal-body {
         padding: 0px;
     }
+
 
 }
 

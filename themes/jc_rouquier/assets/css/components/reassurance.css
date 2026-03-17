@@ -1,0 +1,26 @@
+.blockreassurance_product{
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    align-self: stretch;
+    border-radius: 10px;
+    border: 1px solid #DBEAFE;
+    background: #EFF6FF;
+}
+.blockreassurance_product span.block-title{
+    font-weight: 600;
+    font-size: 16px;
+}
+.blockreassurance_product .item-product, .blockreassurance_product .item-product img, .blockreassurance_product .item-product svg {
+    height: 24px;
+    width: 24px;
+}
+.blockreassurance_product p{
+    font-size: 14px;
+    padding-left: 30px;
+}
+.blockreassurance_product svg path{
+    fill: transparent!important;
+}
