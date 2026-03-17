@@ -1,6 +1,10 @@
+# Docker configuration
+compose.yml
+
 # Secrets / env files
 .env
 .env.*
+.env.example
 
 # OS files
 .DS_Store
@@ -21,3 +25,5 @@ modules/**/node_modules/
 modules/**/var/
 modules/**/cache/
 modules/**/.phpunit.result.cache
+
+exports/
