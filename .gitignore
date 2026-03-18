@@ -1,29 +1,20 @@
-# Docker configuration
-compose.yml
+# Ignore tout par défaut
+*
 
-# Secrets / env files
-.env
-.env.*
-.env.example
+# Autoriser le thème
+!themes/
+!themes/jc_rouquier/
+!themes/jc_rouquier/**
 
-# OS files
-.DS_Store
-Thumbs.db
+# Autoriser modules custom uniquement
+!modules/
+modules/*
+!modules/b2block/
+!modules/b2block/**
 
-# IDE files
-.vscode/
-.idea/
+# (ajoute ici tes autres modules custom si besoin)
+# !modules/mon_module/
+# !modules/mon_module/**
 
-# Logs / dumps
-*.log
-*.sql
-*.dump
-
-# Custom module dependencies / build artefacts
-modules/**/vendor/
-modules/**/node_modules/
-modules/**/var/
-modules/**/cache/
-modules/**/.phpunit.result.cache
-
-exports/
+# Garder le gitignore
+!.gitignore
