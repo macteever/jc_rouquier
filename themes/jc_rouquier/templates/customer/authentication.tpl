@@ -46,7 +46,7 @@
               <p class="b2block-access__text">JC Rouquier accompagne les professionnels de la plomberie et du chauffage avec une large gamme de matériels, des marques reconnues et un service dédié aux installateurs.</p>
 
               <button class="btn-white">
-                <a class="b2block-access__btn btn-white" href="{$link->getModuleLink('b2block', 'register')|escape:'htmlall':'UTF-8'}">Créer un compte professionnel</a>
+                <a class="b2block-access__btn" href="{$link->getModuleLink('b2block', 'register')|escape:'htmlall':'UTF-8'}">Créer un compte professionnel</a>
               </button>
             </div>
             

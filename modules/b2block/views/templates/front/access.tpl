@@ -20,7 +20,7 @@
 
               {if isset($register_url) && $register_url}
                 <button class="btn-white">
-                  <a class="b2block-access__btn btn-white" href="{$register_url|escape:'htmlall':'UTF-8'}">Créer un compte professionnel</a>
+                  <a class="b2block-access__btn" href="{$register_url|escape:'htmlall':'UTF-8'}">Créer un compte professionnel</a>
                 </button>
               {else}
                 <button class="btn-white">

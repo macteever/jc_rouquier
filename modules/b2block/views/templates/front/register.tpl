@@ -20,7 +20,7 @@
 
               {if isset($login_url) && $login_url}
                 <button class="btn-white">
-                  <a class="b2block-access__btn btn-white" href="{$login_url|escape:'htmlall':'UTF-8'}">Me connecter</a>
+                  <a class="b2block-access__btn" href="{$login_url|escape:'htmlall':'UTF-8'}">Me connecter</a>
                 </button>
               {else}
                 <button class="btn-white">
