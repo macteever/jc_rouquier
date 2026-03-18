@@ -26,7 +26,7 @@
                 <button class="btn-white">
                   <a class="b2block-access__btn " href="#">Créer un compte professionnel</a>
                 </button>
-                <!-- TODO register_url: renseigner l'URL cible de la demande d'accès pro -->
+                <!-- TODO register_url: renseigner l'URL cible de la demande d'accès pro TEST -->
               {/if}
             </div>
             
