@@ -358,9 +358,6 @@ border-radius: 5px;
   }
 }
 @media (min-width: 1200px) {
-  .b2block-portal {
-    height: 100vh;
-  }
   .b2block-portal__right{
     height: auto;
   }

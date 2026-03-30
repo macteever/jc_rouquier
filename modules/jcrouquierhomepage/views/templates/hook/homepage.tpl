@@ -4,7 +4,7 @@
       <div class="hero-content ">
         <h1>Bienvenue sur votre espace professionnel JC Rouquier</h1>
         <p>Retrouvez l'ensemble de nos références et accédez rapidement à vos commandes, devis et informations commerciales.</p>
-        <a href="/order" class="hero-cta btn-white">Voir mes commandes</a>
+        <a href="/order" class="hero-cta btn-white">Commandes et devis en cours</a>
       </div>
     </div>
 

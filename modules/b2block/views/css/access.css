@@ -282,6 +282,8 @@ a.b2block-access__link.lost-password{
     padding-right: 3rem!important;
   }
   .b2block-portal__right{
+    position: fixed;
+    right: 0;
     padding-top: 5rem;
     padding-left: 3rem!important;
   }
@@ -303,9 +305,6 @@ a.b2block-access__link.lost-password{
   }
 }
 @media (min-width: 1200px) {
-  .b2block-portal {
-    height: 100vh;
-  }
   .b2block-portal__right{
     height: auto;
   }

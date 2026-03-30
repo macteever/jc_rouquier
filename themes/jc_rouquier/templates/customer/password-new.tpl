@@ -71,14 +71,14 @@
                 <img class="icon-content" src="{$smarty.const._MODULE_DIR_}b2block/views/img/icons/phone.svg" alt="icon phone" loading="lazy">
                 <div class="portal-services-infos">
                   <span>Téléphone</span>
-                  <a href="tel:+33561723838">05 61 72 38 38</a>
+                  <a href="tel:+33749909569">07 49 90 95 69</a>
                 </div>
               </li>
               <li>
                 <img class="icon-content" src="{$smarty.const._MODULE_DIR_}b2block/views/img/icons/mail.svg" alt="icon email" loading="lazy">
                 <div class="portal-services-infos">
                   <span>Email</span>
-                  <a href="mailto:contact@jcrouquier.com">contact@jcrouquier.com</a>
+                  <a href="mailto:commercial@jcrouquier.com ">commercial@jcrouquier.com </a>
                 </div>
               </li>
             </ul>
