@@ -88,11 +88,11 @@
         <div class="flex-col gap-10 "> 
             <div class="flex-row gap-10 align-items-center"> 
                 <i class="material-icons fs-14 color-primary">phone</i>
-                <a  class="color-primary fw-500" href="tel:+33561723838">05 61 72 38 38</a> 
+                <a  class="color-primary fw-500" href="tel:+33749909569">07 49 90 95 69</a> 
             </div>
             <div class="flex-row gap-10 align-items-center"> 
                 <i class="material-icons fs-14 color-primary">mail</i>
-                <a  class="color-primary fw-500" href="mailto:contact@jcrouquier.com">contact@jcrouquier.com</a> 
+                <a  class="color-primary fw-500" href="mailto:commercial@jcrouquier.com">commercial@jcrouquier.com</a> 
             </div>
         </div>
 
